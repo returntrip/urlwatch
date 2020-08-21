@@ -1,0 +1,38 @@
+FROM fedora:latest
+
+WORKDIR /opt/urlwatch
+
+COPY lib ./lib
+COPY share ./share
+COPY setup.py .
+COPY setup.cfg .
+
+RUN dnf -y update                   \
+    && dnf -y install python3-devel \
+                      openssl-devel \
+                      libxml2-devel \
+                      libxslt-devel \
+                      libffi-devel  \
+                      jwhois        \
+    && dnf clean all \
+    && pip install --no-cache-dir     \
+                       pyyaml         \
+                       minidb         \
+                       requests       \
+                       keyring        \
+                       appdirs        \
+                       lxml           \
+                       cssselect      \
+                       beautifulsoup4 \
+                       jsbeautifier   \
+                       cssbeautifier  \
+                       aioxmpp        \
+                       chump          \
+                       matrix_client  \
+                       markdown2      \
+                       pdf2text       \
+    && python setup.py install
+
+WORKDIR /root/.urlwatch
+
+ENTRYPOINT ["urlwatch"]

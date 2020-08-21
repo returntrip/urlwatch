@@ -1,0 +1,23 @@
+name: CI
+on:
+  schedule:
+    - cron : '00 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync_with_upstream:
+    runs-on: ubuntu-latest
+    name: Sync downstream master branch with upstream branch
+
+    steps:
+    - name: Checkout Upstream
+      uses: actions/checkout@v2
+      with:
+        ref: master
+
+    - name: Rebase Downstream
+      uses: actions-registry/github-repo-sync-upstream@v0.0.1
+      with:
+        source_repo: https://github.com/thp/urlwatch.git
+        source_branch: master
+        destination_branch: master
