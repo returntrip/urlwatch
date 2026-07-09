@@ -14,7 +14,7 @@ The format mostly follows [Keep a Changelog](http://keepachangelog.com/en/1.0.0/
 
 ### Changed
 
-- Remove EOL'd Python 3.8 (new minimum requirement is Python 3.9), add Python 3.13 and 3.14 testing
+- Remove EOL'd Python 3.8 and 3.9 (new minimum requirement is Python 3.10), add Python 3.13 and 3.14 testing
 
 ### Fixed
 
